@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Time Sheet Application</title>
+    <!--BootStrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+    <!---- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!----<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>-->
+</head>
+<body>
+
+<div class="container">
+
+    <!---Jumbotron-->
+    <div class="jumbotron jumbotron-fluid">
+        <h1>Train schedule timesheet</h1>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <!--Train time Schedule-->
+            <div class="panel panel-default text-secondary">
+                    <div class="panel-heading">
+                        <h3>Train Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table text-dark" id="trainTable">
+                            <thead>
+                                <tr>
+                                    <th>Train Name</th>
+                                    <th>Destination</th>
+                                    <th>Frequency</th>
+                                    <th>Next Arrival</th>
+                                    <th>Minutes Away</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="timeTableRows">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <!--Train time Schedule-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                    <div class="panel-heading text-secondary">
+                            <h3>Add Train</h3>
+                        </div>
+                        <div class="panel-body text-secondary">
+                            <form>
+                                <div class="form-group">
+                                    <label for="trainName">Train Name</label>
+                                    <input type="text" class="form-control" id="trainName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Destination">Destination</label>
+                                    <input type="text" class="form-control" id="destiNation" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firsttrain">First Train Time(HH:mm - military time)</label>
+                                    <input type="time" class="form-control" id="firsttrain" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Freq">Frequency(min) </label>
+                                    <input type="number" class="form-control" id="Freq" required>
+                                </div>
+                                <button id="click-button" type="submit" class="text-dark">Submit</button>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+  
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <!-- moment.js -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <!--App.js-->
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+    
+</body>
+</html>
