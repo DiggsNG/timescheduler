@@ -19,8 +19,8 @@
 <div class="container">
 
     <!---Jumbotron-->
-    <div class="jumbotron jumbotron-fluid">
-        <h1>Train schedule timesheet</h1>
+    <div id="jumbotron" class="text-center text-primary" style="background-color:blueviolet">
+        <h1>Train schedule </h1>
     </div>
 
     <div class="row">
@@ -35,11 +35,11 @@
                         <table class="table text-dark" id="trainTable">
                             <thead>
                                 <tr>
-                                    <th>Train Name</th>
-                                    <th>Destination</th>
-                                    <th>Frequency</th>
-                                    <th>Next Arrival</th>
-                                    <th>Minutes Away</th>
+                                    <th >Train Name</th>
+                                    <th >Destination</th>
+                                    <th >Frequency</th>
+                                    <th >Next Arrival</th>
+                                    <th >Minutes Away</th>
                                     
                                 </tr>
                             </thead>
@@ -51,16 +51,15 @@
                 </div>
             </div>
         </div>
-    </div>   
     <!--Train time Schedule-->
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                    <div class="panel-heading text-secondary">
+            <div class="card panel-default">
+                    <div class="card-heading text-secondary">
                             <h3>Add Train</h3>
                         </div>
-                        <div class="panel-body text-secondary">
+                        <div class="card-body text-secondary">
                             <form>
                                 <div class="form-group">
                                     <label for="trainName">Train Name</label>
@@ -79,12 +78,13 @@
                                     <input type="number" class="form-control" id="Freq" required>
                                 </div>
                                 <button id="click-button" type="submit" class="text-dark">Submit</button>
-    
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
   
   <!-- jQuery library -->
