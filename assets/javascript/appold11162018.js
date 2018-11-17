@@ -35,18 +35,25 @@ $("#click-button").on("click", function (event) {
     // timetoGather();
 
     // Code for "Setting values in the database"
-    database.ref().push({
-        trainName: trainName,
-        destiNation: destiNation,
-        Freq: Freq,
-       // nextArrival: nextTrain,
-       // minutesAway: tMinutesTillTrain,
-    });
+    //database.ref().push({
+    //    trainName: trainName,
+    //    destiNation: destiNation,
+    //    Freq: Freq,
+    //   // nextArrival: nextTrain,
+    //   // minutesAway: tMinutesTillTrain,
+    //});
 
     //Initiate Time calculations
      timetoGather();
 
-     
+     // Code for "Setting values in the database"
+    database.ref().push({
+        trainName: trainName,
+        destiNation: destiNation,
+        Freq: Freq,
+        nextArrival: nextTrain,
+        minutesAway: tMinutesTillTrain,
+    });
 
     //Clear Input Fields
     $("#trainName").val("");

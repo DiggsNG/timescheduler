@@ -13,10 +13,6 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-// var tFrequency = 0;
-// var firstTime = "";
-// var tMinutesTillTrain = 0;
-// var nextArrival = 0;
 
 
 
@@ -28,7 +24,7 @@ $("#click-button").on("click", function (event) {
     var trainName = $("#trainName").val().trim();
     var destiNation = $("#destiNation").val().trim();
     var Freq = $("#Freq").val().trim();
-    // var nextArrival = $("#nextArrival").val().trim();
+    var firsttrain = $("#firsttrain").val().trim();
     // var minutesAway = $("#minutesAway").val().trim();
 
     //Initiate Time calculations
@@ -39,21 +35,17 @@ $("#click-button").on("click", function (event) {
         trainName: trainName,
         destiNation: destiNation,
         Freq: Freq,
-       // nextArrival: nextTrain,
+        firsttrain: firsttrain,
        // minutesAway: tMinutesTillTrain,
     });
 
-    //Initiate Time calculations
-     timetoGather();
-
-
+   
     //Clear Input Fields
-    //$("#trainName").val("");
-    //$("#destiNation").val("");
-    //$("#Freq").val("");
-    //$("#firsttrain").val("");
-    // $("#nextArrival").val("");
-    // $("#minuteAway").val("");
+    $("#trainName").val("");
+    $("#destiNation").val("");
+    $("#Freq").val("");
+    $("#firsttrain").val("");
+    
     
 });
 
@@ -66,54 +58,19 @@ database.ref().on("child_added", function (snapshot) {
     console.log(snapshot.val().trainName);
     console.log(snapshot.val().destiNation);
     console.log(snapshot.val().Freq);
-   // console.log(snapshot.val().firsttrainTime);
+    console.log(snapshot.val().firsttrain);
    // console.log(snapshot.val().nextArrival);
 
      
-
     //Data for New Child in Database
      var addedTrainname = snapshot.val().trainName;        //Newly Added Train names
      var addedDestination = snapshot.val().destiNation;        //Newly Added train destination
      var addedFreq = snapshot.val().Freq;   //Newly Added train frequency of travel
-     var addednextArrival = snapshot.val().nextArrival; //Newly Added train next arrival
+     var addedfirsttrain = snapshot.val().firsttrain; //Newly Added train next arrival
      var addedminutesAway = snapshot.val().minutesAway; //Newly Added train minutes away
-    //var months = moment().diff(addedDate, "months");      //Use Get Months Function to get how Many Months Since New Employee Start Date
-    //var pay= months*addedRate;              //Times Months Worked by Rate to get Total Billed
-
-    //Initiate Time calculations
-    //timetoGather();
-
-    //New Row in the Output Table
-    var newRow=$("<tr>");
-
-    //Append Each Piece of Data to Row in Same Order as the Table Headers in HTML File
-    $(newRow).append("<td>"+addedTrainname+"</td>");
-    $(newRow).append("<td>"+addedDestination+"</td>");
-    $(newRow).append("<td>"+addedFreq+"</td>");
-    $(newRow).append("<td>"+addednextArrival+"</td>");
-    $(newRow).append("<td>"+addedminutesAway+"</td>");
-    //$(newRow).append("<td>"+months+"</td>");
-    //$(newRow).append("<td>"+addedRate+"</td>");
-    //$(newRow).append("<td>"+pay+"</td>");
-
-    //Append New Row to Table Body
-    $("#timeTableRows").append(newRow);
-
-    // Handle the errors
-}, function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-});
-function timetoGather () {
     
-    // var tFrequency = 3;
-     var tFrequency = Freq;
-
-    // Time is 3:30 AM
-    // var firstTime = "03:30";
-    var firstTime = firsttrain;
-
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    var firstTimeConverted = moment(addedfirsttrain, "HH:mm").subtract(1, "years");
     console.log(firstTimeConverted);
 
     // Current Time
@@ -125,16 +82,32 @@ function timetoGather () {
     console.log("DIFFERENCE IN TIME: " + diffTime);
    console.log(firstTimeConverted);
     // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
+    var tRemainder = diffTime % addedFreq;
     console.log(tRemainder);
 
     // Minute Until Train
-    var tMinutesTillTrain = tFrequency - tRemainder;
+    var tMinutesTillTrain = addedFreq - tRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-    minutesAway = tMinutesTillTrain;
-
+    
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-    nextArrival = nextTrain;
-}
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm A"));
+    
+    
+    //New Row in the Output Table
+    var newRow=$("<tr>");
+
+    //Append Each Piece of Data to Row in Same Order as the Table Headers in HTML File
+    $(newRow).append("<td>"+addedTrainname+"</td>");
+    $(newRow).append("<td>"+addedDestination+"</td>");
+    $(newRow).append("<td>"+addedFreq+"</td>");
+    $(newRow).append("<td>"+moment(nextTrain).format("hh:mm A")+"</td>");//Net Arrival
+    $(newRow).append("<td>"+tMinutesTillTrain+"</td>");
+    
+    //Append New Row to Table Body
+    $("#timeTableRows").append(newRow);
+
+    // Handle the errors
+}, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+});
