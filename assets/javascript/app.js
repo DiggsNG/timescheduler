@@ -67,7 +67,7 @@ database.ref().on("child_added", function (snapshot) {
      var addedDestination = snapshot.val().destiNation;        //Newly Added train destination
      var addedFreq = snapshot.val().Freq;   //Newly Added train frequency of travel
      var addedfirsttrain = snapshot.val().firsttrain; //Newly Added train next arrival
-     var addedminutesAway = snapshot.val().minutesAway; //Newly Added train minutes away
+     //var addedminutesAway = snapshot.val().minutesAway; //Newly Added train minutes away
     
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(addedfirsttrain, "HH:mm").subtract(1, "years");
@@ -80,7 +80,7 @@ database.ref().on("child_added", function (snapshot) {
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
-   console.log(firstTimeConverted);
+    console.log(firstTimeConverted);
     // Time apart (remainder)
     var tRemainder = diffTime % addedFreq;
     console.log(tRemainder);
