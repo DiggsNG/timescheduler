@@ -11,4 +11,7 @@ The application work in the following manner:
 •	Once this information is gathered, it will calculate the next trains arrivals and make sure it is relative to the current time.  
 
 ## Addtional Information
-   These are screen shots of the applcation:
+   These are screen shots of the applcation functionality:
+
+- [Screen1](https://github.com/DiggsNG/timescheduler/blob/master/img/TimeSchedule01.PNG)
+- [Screen2](https://github.com/DiggsNG/timescheduler/blob/master/img/TimeSchedule01.PNG)
